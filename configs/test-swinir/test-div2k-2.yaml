@@ -1,0 +1,22 @@
+test_dataset:
+  dataset:
+    name: paired-image-folders
+    args:
+      root_path_1: /nobackup/gpu_d_00993_t3/mtk19837/dataset/sr_data/DIV2K/DIV2K_valid_LR/X2
+      root_path_2: /nobackup/gpu_d_00993_t3/mtk19837/dataset/sr_data/DIV2K/DIV2K_valid_HR
+
+  wrapper:
+    name: sr-implicit-paired-cascaded
+    args:
+      batch_size: 1
+      scale_base: 4
+      window_size: 8
+
+  batch_size: 1
+
+eval_type: div2k-2
+eval_bsize: 30000
+
+data_norm:
+  inp: {sub: [0.5], div: [0.5]}
+  gt: {sub: [0.5], div: [0.5]}

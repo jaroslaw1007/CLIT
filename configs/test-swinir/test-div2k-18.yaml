@@ -1,0 +1,23 @@
+test_dataset:
+  dataset:
+    name: image-folder
+    args:
+      root_path: /nobackup/gpu_d_00993_t3/mtk19837/dataset/sr_data/DIV2K/DIV2K_valid_HR
+
+  wrapper:
+    name: sr-implicit-downsampled-cascaded
+    args:
+      batch_size: 1
+      scale_max: 18
+      scale_base: 4
+      window_size: 8
+      phase: valid
+
+  batch_size: 1
+
+eval_type: div2k-18
+eval_bsize: 10000
+
+data_norm:
+  inp: {sub: [0.5], div: [0.5]}
+  gt: {sub: [0.5], div: [0.5]}
