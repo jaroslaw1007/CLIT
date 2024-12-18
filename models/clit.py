@@ -16,7 +16,6 @@ class CLIT(nn.Module):
         encoder_spec,
         imnet_spec,
         pb_spec=None,
-        pe_spec=None,
         base_dim=192,
         head=8,
         r=3,
