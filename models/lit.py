@@ -178,8 +178,6 @@ class LIT(nn.Module):
                     feat_v = feat_v.reshape(bs, q, self.r_area, self.head, self.dim // self.head)
                     feat_v = torch.mul(feat_v, attn).reshape(bs, q, self.r_area, -1)
 
-                    attn_map = attn[0, 10, :, 0, :].reshape(2 * r + 1, 2 * r + 1, 1)
-
                 feat_freq = feat_freq.reshape(bs, q, 2 * r + 1, 2 * r + 1, -1)
                 feat_freq = torch.fft.fft2(feat_freq, dim=(2, 3), norm='ortho')
                 feat_freq = feat_freq.reshape(bs, q, self.r_area, -1)
@@ -212,7 +210,7 @@ class LIT(nn.Module):
             ret = ret + pred * (area / tot_area).unsqueeze(-1)
         ret +=  F.grid_sample(self.inp, coord.flip(-1), mode='bilinear',\
                         padding_mode='border', align_corners=False)[:, :, :, 0].permute(0, 2, 1)
-        return ret, attn_map
+        return ret
 
     def forward(self, inp, coord, cell):
 
